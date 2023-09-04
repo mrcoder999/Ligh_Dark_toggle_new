@@ -1,3 +1,11 @@
+import { withPluginApi } from "discourse/lib/plugin-api";
+import I18n from "I18n";
+import { h } from "virtual-dom";
+import { iconNode } from "discourse-common/lib/icon-library";
+import cookie from "discourse/lib/cookie";
+import { observes } from "discourse-common/utils/decorators";
+import Session from "discourse/models/session";
+
 import { createWidget } from "discourse/widgets/widget";
 import RenderGlimmer from "discourse/widgets/render-glimmer";
 import { hbs } from "ember-cli-htmlbars";
