@@ -2,7 +2,7 @@ import { createWidget } from "discourse/widgets/widget";
 import RenderGlimmer from "discourse/widgets/render-glimmer";
 import { hbs } from "ember-cli-htmlbars";
 
-createWidget("dark-light-toggle", {
+createWidget("header-toggle-button", {
         tagName: "li.dark-light-toggle.icon",
 
         buildKey: () => "dark-light-toggle",
