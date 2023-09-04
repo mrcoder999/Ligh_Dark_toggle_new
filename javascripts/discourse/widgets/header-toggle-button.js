@@ -2,16 +2,41 @@ import { createWidget } from "discourse/widgets/widget";
 import RenderGlimmer from "discourse/widgets/render-glimmer";
 import { hbs } from "ember-cli-htmlbars";
 
-createWidget("header-toggle-button", {
-  tagName: "li.header-toggle-button.header-dropdown-toggle",
+createWidget("dark-light-toggle", {
+        tagName: "li.dark-light-toggle.icon",
 
-  html() {
-    return [
-      new RenderGlimmer(
-        this,
-        "span.header-color-scheme-toggle.icon",
-        hbs`<ColorSchemeToggler />`
-      ),
-    ];
-  },
-});
+        buildKey: () => "dark-light-toggle",
+
+        buildId: () => "dark-light-toggle",
+
+        click() {
+          toggleDarkLight();
+          this.scheduleRerender();
+        },
+
+        selectedScheme(scheme) {
+          if (activeScheme() === scheme) {
+            return ".selected";
+          }
+
+          return "";
+        },
+
+        html() {
+          return h(`label.switch.${activeScheme()}`, [
+            h(`span.slider.round`, ""),
+            h(
+              `span.toggle-icon.round.dark${this.selectedScheme("light")}`,
+              iconNode("sun", {
+                class: "scheme-icon",
+              })
+            ),
+            h(
+              `span.toggle-icon.round.light${this.selectedScheme("dark")}`,
+              iconNode("far-moon", {
+                class: "scheme-icon",
+              })
+            ),
+          ]);
+        },
+      });
